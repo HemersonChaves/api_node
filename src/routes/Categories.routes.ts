@@ -12,7 +12,7 @@ categoriesRoutes.post("/categories", (request, response)=>{
         description
 
     })
-    return response.status(201);
+    return response.status(201).json({messagem:"deu certo"});
 })
 
 export{categoriesRoutes}
