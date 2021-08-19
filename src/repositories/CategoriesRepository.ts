@@ -1,10 +1,8 @@
-import { response } from "express";
 import { Category } from "../model/Category";
+import { ICategoriesRepository, ICreateCategoryDTO } from "./ICategoriesRepository";
 
-interface ICreateCategoryDTO{
-    name: string, description: string
-}
-class CategoriesRespository{
+
+class CategoriesRespository implements ICategoriesRepository{
     private categories: Category[];
 
     constructor(){
@@ -18,7 +16,7 @@ class CategoriesRespository{
     list(): Category[]{
         return this.categories;
     }
-    findByname(name:string): Category{
+    findByName(name:string): Category{
         const category = this.categories.find(category => category.name === name);
         return category;
     }
