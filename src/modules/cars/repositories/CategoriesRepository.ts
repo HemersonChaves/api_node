@@ -4,9 +4,16 @@ import { ICategoriesRepository, ICreateCategoryDTO } from "./ICategoriesReposito
 
 class CategoriesRespository implements ICategoriesRepository{
     private categories: Category[];
+    private static INSTANCE: CategoriesRespository;
 
-    constructor(){
+    private constructor(){
         this.categories = [];
+    }
+    public static getInstance():CategoriesRespository{
+        if(!CategoriesRespository.INSTANCE){
+            CategoriesRespository.INSTANCE = new CategoriesRespository();
+        }
+        return CategoriesRespository.INSTANCE;
     }
     create({name, description}: ICreateCategoryDTO):void{
         const category = new Category();
